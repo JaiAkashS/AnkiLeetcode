@@ -544,25 +544,6 @@
         "interval": 1
     },
     {
-        "title": "GOG - Longest Subarray with Sum K",
-        "statement": "Given an array arr[] containing integers and an integer k, your task is to find the length of the longest subarray where the sum of its elements is equal to the given value k. If there is no subarray with sum equal to k, return 0.\n\nExamples:\n\nInput: arr[] = [10, 5, 2, 7, 1, -10], k = 15\nOutput: 6\nExplanation: Subarrays with sum = 15 are [5, 2, 7, 1], [10, 5] and [10, 5, 2, 7, 1, -10]. The length of the longest subarray with a sum of 15 is 6.\n\nInput: arr[] = [-5, 8, -14, 2, 4, 12], k = -5\nOutput: 5\nExplanation: Only subarray with sum = -5 is [-5, 8, -14, 2, 4] of length 5.\n\nInput: arr[] = [10, -10, 20, 30], k = 5\nOutput: 0\nExplanation: No subarray with sum = 5 is present in arr[].",
-        "solution": "class Solution {\n    public int longestSubarray(int[] arr, int k) {\n        HashMap<Integer, Integer> prefix = new HashMap<>();\n        int sum = 0;\n        int max = 0;\n\n        for (int i = 0; i < arr.length; i++) {\n            sum += arr[i];\n\n            if (sum == k) {\n                max = Math.max(max, i + 1);\n            }\n\n            if (prefix.containsKey(sum - k)) {\n                int len = i - prefix.get(sum - k);\n                max = Math.max(max, len);\n            }\n\n            prefix.putIfAbsent(sum, i);\n        }\n        return max;\n    }\n}",
-        "tags": [
-            "array",
-            "two pointers",
-            "hashmap",
-            "prefix sum"
-        ],
-        "notes": "",
-        "difficulty": "Medium",
-        "last_reviewed": "2025-10-05",
-        "next_review": "2025-10-06",
-        "review_count": 1,
-        "success_count": 0,
-        "ef": 2.18,
-        "interval": 1
-    },
-    {
         "title": "GOG - Find Last Digit Of a^b for Large Numbers",
         "statement": "You are given two integer numbers in the form of string, the base a and the index b. You have to find the last digit of ab.\n\nExamples:\n\nInput: a = \"3\", b = \"10\"\nOutput: 9\nExplanation: 310 = 59049. Last digit is 9.\n\nInput: a = \"6\", b = \"2\"\nOutput: 6\nExplanation: 62 = 36. Last digit is 6.\n\nYour Task:\nYou don't need to read input or print anything. Your task is to complete the function getLastDigit() which takes two strings a,b as parameters and returns an integer denoting the last digit of ab.",
         "solution": "class Solution {\n    static int getLastDigit(String a, String b) {\n        int a1 = a.charAt(a.length() - 1) - '0';\n\n        // Handle when exponent is 0\n        if (b.equals(\"0\")) return 1;\n\n        int op = 0;\n        switch (a1) {\n            case 0: case 1: case 5: case 6:\n                op = a1;\n                break;\n\n            case 4: case 9:\n                int lastDigitB = b.charAt(b.length() - 1) - '0';\n                if (lastDigitB % 2 == 0) {\n                    op = (a1 == 4) ? 6 : 1;\n                } else {\n                    op = a1;\n                }\n                break;\n\n            case 2: case 3: case 7: case 8:\n                // Get last 2 digits of b for modulo 4\n                int lastTwo = (b.length() >= 2) \n                    ? Integer.parseInt(b.substring(b.length() - 2))\n                    : Integer.parseInt(b);\n                int rem = lastTwo % 4;\n                if (rem == 0) rem = 4;\n                int res = (int) Math.pow(a1, rem);\n                op = res % 10;\n                break;\n        }\n        return op;\n    }\n}",
@@ -1646,6 +1627,25 @@
             "bit manipulation"
         ],
         "notes": "",
+        "difficulty": "Medium",
+        "last_reviewed": null,
+        "next_review": null,
+        "review_count": 0,
+        "success_count": 0,
+        "ef": 2.5,
+        "interval": 1
+    },
+    {
+        "title": "Longest Subarray with Sum K",
+        "statement": "Given an array arr[] containing integers and an integer k, your task is to find the length of the longest subarray where the sum of its elements is equal to the given value k. If there is no subarray with sum equal to k, return 0.\n\nExamples:\n\nInput: arr[] = [10, 5, 2, 7, 1, -10], k = 15\nOutput: 6\nExplanation: Subarrays with sum = 15 are [5, 2, 7, 1], [10, 5] and [10, 5, 2, 7, 1, -10]. The length of the longest subarray with a sum of 15 is 6.\n\nInput: arr[] = [-5, 8, -14, 2, 4, 12], k = -5\nOutput: 5\nExplanation: Only subarray with sum = -5 is [-5, 8, -14, 2, 4] of length 5.\n\nInput: arr[] = [10, -10, 20, 30], k = 5\nOutput: 0\nExplanation: No subarray with sum = 5 is present in arr[].",
+        "solution": "import java.util.*;\n\npublic class Main {\n    public static int getLongestSubarray(int []a, long k) {\n        int n = a.length; // size of the array.\n\n        int left = 0, right = 0; // 2 pointers\n        long sum = a[0];\n        int maxLen = 0;\n        while (right < n) {\n            // if sum > k, reduce the subarray from left\n            // until sum becomes less or equal to k:\n            while (left <= right && sum > k) {\n                sum -= a[left];\n                left++;\n            }\n\n            // if sum = k, update the maxLen i.e. answer:\n            if (sum == k) {\n                maxLen = Math.max(maxLen, right - left + 1);\n            }\n\n            // Move forward thw right pointer:\n            right++;\n            if (right < n) sum += a[right];\n        }\n\n        return maxLen;\n    }\n\n",
+        "tags": [
+            "array",
+            "hashmap",
+            "prefix sum",
+            "two pointers"
+        ],
+        "notes": "this solution is using prefix sum , sliding / two pointer does not work for negative numbers",
         "difficulty": "Medium",
         "last_reviewed": null,
         "next_review": null,

@@ -33,8 +33,15 @@ def add_problem_interactive():
         code_lines.append(line)
     solution_code = '\n'.join(code_lines)
     solution_code = format_solution(solution_code)
-    # Prompt for notes
-    notes = input("Enter any notes for this problem (optional): ").strip()
+    # Prompt for multi-line notes (end with END)
+    print("Enter notes for this problem (optional). End with a single line containing only 'END' (or enter 'END' immediately to skip):")
+    note_lines = []
+    while True:
+        line = input()
+        if line.strip() == 'END':
+            break
+        note_lines.append(line)
+    notes = '\n'.join(note_lines).strip()
     # Prompt for difficulty
     difficulty = input("Enter difficulty (Easy/Medium/Hard): ").strip().capitalize() or "Unrated"
     storage = Storage()
