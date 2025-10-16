@@ -29,6 +29,9 @@ def print_statistics():
     tag_count = dict(sorted(tag_count.items(), key=lambda item: item[1], reverse=True))
     for tag, count in tag_count.items():
         print(f"  {tag}: {count}")
+    # skip_recall summary
+    skipped = len([p for p in problems if getattr(p, 'skip_recall', False)])
+    print(f"Skipped for recall: {skipped}")
 
 
 def review_daily():
@@ -88,13 +91,15 @@ def review_bored(tag_override=None):
 
     tag_norm = normalize_tag(tag_raw)
 
-    filtered = problems
+    # Exclude problems that are marked to skip recall
+    filtered = [p for p in problems if not getattr(p, 'skip_recall', False)]
     if tag_norm:
-        filtered = [p for p in problems if any(normalize_tag(t) == tag_norm for t in p.tags)]
+        filtered = [p for p in filtered if any(normalize_tag(t) == tag_norm for t in p.tags)]
     if not filtered:
         if tag_norm:
             print(f"No problems found for the configured bored tag: '{tag_raw}'. Trying any tag instead.")
-            filtered = problems
+            # fallback to any problem that's not skipped
+            filtered = [p for p in problems if not getattr(p, 'skip_recall', False)]
         if not filtered:
             print("No problems available to select for bored mode.")
             return
@@ -110,6 +115,13 @@ def review_bored(tag_override=None):
     problem.mark_reviewed(success=correct, difficulty=difficulty)
     if problem.notes:
         print(f"Notes: {problem.notes}")
+    # Allow toggling whether this specific problem should be excluded from future recall/bored sessions
+    current_skip = getattr(problem, 'skip_recall', False)
+    print(f"Currently skipped for recall: {current_skip}")
+    toggle = input("Toggle skip recall for this problem? (y/N): ").strip().lower()
+    if toggle == 'y':
+        problem.skip_recall = not current_skip
+        print(f"skip_recall set to {problem.skip_recall}")
     storage.save_data()
 
 def review_problems(mode):
@@ -121,7 +133,7 @@ def review_problems(mode):
     tag_filter_raw = input("Filter by tag (leave blank for all): ").strip()
     diff_filter = input("Filter by difficulty (Easy/Medium/Hard/leave blank for all): ").strip().capitalize()
     status_filter = input("Filter by status (unseen/failed/due/all): ").strip().lower() or "due"
-    filtered = problems
+    filtered = [p for p in problems if not getattr(p, 'skip_recall', False)]
     # use same normalization helper from above
     def normalize_tag(s: str) -> str:
         if not s:
@@ -150,6 +162,11 @@ def review_problems(mode):
         print(f"\nProblem {idx+1}: {problem.title}")
         print(f"Tags: {', '.join(problem.tags)} | Difficulty: {problem.difficulty}")
         print(problem.statement)
+        # Allow toggling whether a problem should be excluded from recall sessions
+        toggle = input("Toggle skip recall for this problem? (y/N): ").strip().lower()
+        if toggle == 'y':
+            problem.skip_recall = not getattr(problem, 'skip_recall', False)
+            print(f"skip_recall set to {problem.skip_recall}")
         if mode == '1':
             input("Try to recall the solution. Press Enter to reveal...")
             print("Solution:")

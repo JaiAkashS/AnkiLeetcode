@@ -8,12 +8,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": "2025-10-04",
-        "next_review": "2025-10-05",
-        "review_count": 1,
-        "success_count": 1,
-        "ef": 2.6,
-        "interval": 1
+        "last_reviewed": "2025-10-07",
+        "next_review": "2025-10-23",
+        "review_count": 3,
+        "success_count": 3,
+        "ef": 2.8000000000000003,
+        "interval": 16,
+        "skip_recall": true
     },
     {
         "title": "Merge Two Sorted Lists",
@@ -31,7 +32,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Squares of a Sorted Array",
@@ -49,7 +51,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Move Zeroes",
@@ -61,12 +64,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-15",
+        "next_review": "2025-10-21",
+        "review_count": 2,
+        "success_count": 2,
+        "ef": 2.7,
+        "interval": 6,
+        "skip_recall": true
     },
     {
         "title": "Find the Duplicate Number",
@@ -79,18 +83,19 @@
             "bit manipulation"
         ],
         "notes": "study the hare and the turtle solution",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-08",
+        "next_review": "2025-10-09",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Merge Sorted Array",
         "statement": "You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.\n\nMerge nums1 and nums2 into a single array sorted in non-decreasing order.\n\nThe final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.\n\n \n\nExample 1:\n\nInput: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3\nOutput: [1,2,2,3,5,6]\nExplanation: The arrays we are merging are [1,2,3] and [2,5,6].\nThe result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.\n\nExample 2:\n\nInput: nums1 = [1], m = 1, nums2 = [], n = 0\nOutput: [1]\nExplanation: The arrays we are merging are [1] and [].\nThe result of the merge is [1].\n\nExample 3:\n\nInput: nums1 = [0], m = 0, nums2 = [1], n = 1\nOutput: [1]\nExplanation: The arrays we are merging are [] and [1].\nThe result of the merge is [1].\nNote that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.",
-        "solution": "class Solution {\n    public void merge(int[] nums1, int m, int[] nums2, int n) {\n        int ptrS = m, ptr2 = 0;\n        int curr = 0;\n        while (curr < ptrS && ptr2 < n) {\n            if (nums1[curr] <= nums2[ptr2]) {\n                curr++;\n            } else if (nums1[curr] > nums2[ptr2]) {\n                int i = ptrS - 1;\n                ptrS++;\n                while (i >= curr) {\n                    nums1[i + 1] = nums1[i];\n                    i--;\n                }\n                nums1[curr++] = nums2[ptr2++];\n            }\n        }\n        while (ptr2 < n) {\n            nums1[curr++] = nums2[ptr2++];\n        }\n    }\n}",
+        "solution": "class Solution {\n\n    public void merge(int[] nums1, int m, int[] nums2, int n) {\n\n        // Initialize three pointers:\n\n        // i: points to the last valid element in nums1\n\n        // j: points to the last element in nums2\n\n        // k: points to the last position in the merged array\n\n        int i = m - 1;\n\n        int j = n - 1;\n\n        int k = m + n - 1;\n\n      \n\n        // Merge arrays from right to left\n\n        // Continue until all elements from nums2 are processed\n\n        while (j >= 0) {\n\n            // Compare elements from both arrays and place the larger one at position k\n\n            // If nums1 has remaining elements AND current element in nums1 is greater than nums2\n\n            if (i >= 0 && nums1[i] > nums2[j]) {\n\n                nums1[k] = nums1[i];\n\n                i--;\n\n            } else {\n\n                // Otherwise, take element from nums2\n\n                nums1[k] = nums2[j];\n\n                j--;\n\n            }\n\n            k--;\n\n        }\n\n        // Note: If i >= 0 after the loop, remaining elements in nums1 are already in place\n\n    }\n\n}",
         "tags": [
             "array",
             "two pointers",
@@ -98,12 +103,13 @@
         ],
         "notes": "look for bit manipulation solution",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-06",
+        "next_review": "2025-10-12",
+        "review_count": 2,
+        "success_count": 1,
+        "ef": 2.2800000000000002,
+        "interval": 6,
+        "skip_recall": true
     },
     {
         "title": "Two Sum II - Input Array Is Sorted",
@@ -115,13 +121,14 @@
             "binary search"
         ],
         "notes": "",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-15",
+        "next_review": "2025-10-21",
+        "review_count": 2,
+        "success_count": 2,
+        "ef": 2.7,
+        "interval": 6,
+        "skip_recall": true
     },
     {
         "title": "Container With Most Water",
@@ -133,13 +140,14 @@
             "greedy"
         ],
         "notes": "",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-13",
+        "next_review": "2025-11-28",
+        "review_count": 4,
+        "success_count": 4,
+        "ef": 2.9000000000000004,
+        "interval": 46,
+        "skip_recall": true
     },
     {
         "title": "3Sum",
@@ -151,13 +159,14 @@
             "sorting"
         ],
         "notes": "look for other solution",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-15",
+        "next_review": "2025-10-16",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Trapping Rain Water",
@@ -168,12 +177,13 @@
         ],
         "notes": "look for other solution - stack , etc",
         "difficulty": "Hard",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-11",
+        "next_review": "2025-10-12",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "First Missing Positive",
@@ -185,12 +195,13 @@
         ],
         "notes": "look for circular sort",
         "difficulty": "Hard",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-14",
+        "next_review": "2025-10-15",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Majority Element",
@@ -210,7 +221,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Majority Element II",
@@ -223,13 +235,14 @@
             "counting"
         ],
         "notes": "",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-14",
+        "next_review": "2025-10-15",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Ransom Note",
@@ -242,12 +255,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-07",
+        "next_review": "2025-10-13",
+        "review_count": 2,
+        "success_count": 2,
+        "ef": 2.7,
+        "interval": 6,
+        "skip_recall": true
     },
     {
         "title": "Reordered Power of 2",
@@ -262,12 +276,13 @@
         ],
         "notes": "learn about the binary rep of powers of 2",
         "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-12",
+        "next_review": "2025-10-13",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Letter Tile Possibilities",
@@ -281,12 +296,13 @@
         ],
         "notes": "learn lmao",
         "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-14",
+        "next_review": "2025-10-15",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Number of Good Pairs",
@@ -305,7 +321,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Check if One String Swap Can Make Strings Equal",
@@ -323,7 +340,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Divide Array Into Equal Pairs",
@@ -342,7 +360,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Count Elements With Maximum Frequency",
@@ -355,12 +374,13 @@
         ],
         "notes": "learn stream",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-16",
+        "next_review": "2025-10-17",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Find Most Frequent Vowel and Consonant",
@@ -373,12 +393,13 @@
         ],
         "notes": "look for better solution",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-09",
+        "next_review": "2025-10-10",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "4Sum",
@@ -390,13 +411,14 @@
             "sorting"
         ],
         "notes": "",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-12",
+        "next_review": "2025-10-28",
+        "review_count": 3,
+        "success_count": 3,
+        "ef": 2.8000000000000003,
+        "interval": 16,
+        "skip_recall": true
     },
     {
         "title": "Remove Duplicates from Sorted Array",
@@ -408,12 +430,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-12",
+        "next_review": "2025-10-13",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Valid Palindrome",
@@ -425,12 +448,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-06",
+        "next_review": "2025-10-07",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Rotate Array",
@@ -448,24 +472,26 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Swapping Nodes in a Linked List",
         "statement": "You are given the head of a linked list, and an integer k.\n\nReturn the head of the linked list after swapping the values of the kth node from the beginning and the kth node from the end (the list is 1-indexed).\n\n \n\nExample 1:\nInput: head = [1,2,3,4,5], k = 2\nOutput: [1,4,3,2,5]\n\nExample 2:\n\nInput: head = [7,9,6,6,7,8,3,0,9,5], k = 5\nOutput: [7,9,6,6,8,7,3,0,9,5]",
-        "solution": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     struct ListNode *next;\n * };\n */\nstruct ListNode* swapNodes(struct ListNode* head, int k) {\n   if (!head) return NULL;\n\n    struct ListNode *first = head, *second = head, *current = head;\n    int length = 0;\n\n    while (current) {\n        length++;\n        current = current->next;\n    }\n   \n    for (int i = 1; i < k; i++) {\n        first = first->next;\n    }\n\n    \n    for (int i = 1; i <= length - k; i++) {\n        second = second->next;\n    }\n\n   \n    int temp = first->val;\n    first->val = second->val;\n    second->val = temp;\n\n    return head;\n}",
+        "solution": "class Solution {\r\n\r\n    public ListNode swapNodes(ListNode head, int k) {\r\n\r\n        // Find the k-th node from the beginning\r\n\r\n        ListNode kthFromStart = head;\r\n\r\n        int position = k;\r\n\r\n        while (--position > 0) {\r\n\r\n            kthFromStart = kthFromStart.next;\r\n\r\n        }\r\n\r\n      \r\n\r\n        // Store reference to the k-th node from beginning\r\n\r\n        ListNode firstNode = kthFromStart;\r\n\r\n      \r\n\r\n        // Use two-pointer technique to find k-th node from the end\r\n\r\n        // Start slow pointer from head\r\n\r\n        ListNode kthFromEnd = head;\r\n\r\n      \r\n\r\n        // Move the fast pointer (kthFromStart) to the end\r\n\r\n        // While moving slow pointer simultaneously\r\n\r\n        // This maintains a gap of k nodes between them\r\n\r\n        while (kthFromStart.next != null) {\r\n\r\n            kthFromStart = kthFromStart.next;\r\n\r\n            kthFromEnd = kthFromEnd.next;\r\n\r\n        }\r\n\r\n      \r\n\r\n        // Store reference to the k-th node from end\r\n\r\n        ListNode secondNode = kthFromEnd;\r\n\r\n      \r\n\r\n        // Swap the values of the two nodes\r\n\r\n        int temp = firstNode.val;\r\n\r\n        firstNode.val = secondNode.val;\r\n\r\n        secondNode.val = temp;\r\n\r\n      \r\n\r\n        return head;\r\n\r\n    }\r\n\r\n}",
         "tags": [
             "linkedlist",
             "two pointers"
         ],
-        "notes": "",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "notes": "using the fast and slow approarch - hare and turtle problem",
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-09",
+        "next_review": "2025-10-23",
+        "review_count": 3,
+        "success_count": 2,
+        "ef": 2.3800000000000003,
+        "interval": 14,
+        "skip_recall": false
     },
     {
         "title": "Check If N and Its Double Exist",
@@ -485,7 +511,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Duplicate Zeros",
@@ -497,12 +524,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": "2025-10-05",
-        "next_review": "2025-10-06",
-        "review_count": 1,
-        "success_count": 1,
-        "ef": 2.6,
-        "interval": 1
+        "last_reviewed": "2025-10-09",
+        "next_review": "2025-10-23",
+        "review_count": 3,
+        "success_count": 2,
+        "ef": 2.3800000000000003,
+        "interval": 14,
+        "skip_recall": true
     },
     {
         "title": "GOG - Find triplets with zero sum",
@@ -516,13 +544,14 @@
             "hash table"
         ],
         "notes": "",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-06",
+        "next_review": "2025-10-07",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "GOG - Triplet Sum in Array",
@@ -535,13 +564,14 @@
             "sorting"
         ],
         "notes": "",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-15",
+        "next_review": "2025-10-16",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "GOG - Find Last Digit Of a^b for Large Numbers",
@@ -552,12 +582,13 @@
         ],
         "notes": "learn a simple method",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-15",
+        "next_review": "2025-10-16",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG - Power of Numbers",
@@ -570,12 +601,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-15",
+        "next_review": "2025-10-31",
+        "review_count": 3,
+        "success_count": 3,
+        "ef": 2.8000000000000003,
+        "interval": 16,
+        "skip_recall": true
     },
     {
         "title": "GOG - Sort 0s, 1s and 2s",
@@ -586,13 +618,14 @@
             "sorting"
         ],
         "notes": "learn dutch flag algorithm",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-15",
+        "next_review": "2025-10-16",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG - K-th element of two Arrays",
@@ -610,7 +643,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Square Root",
@@ -623,12 +657,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-12",
+        "next_review": "2025-10-18",
+        "review_count": 2,
+        "success_count": 1,
+        "ef": 2.2800000000000002,
+        "interval": 6,
+        "skip_recall": true
     },
     {
         "title": "Third largest element",
@@ -639,12 +674,13 @@
         ],
         "notes": "look at different solutions",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-15",
+        "next_review": "2025-10-29",
+        "review_count": 3,
+        "success_count": 2,
+        "ef": 2.3800000000000003,
+        "interval": 14,
+        "skip_recall": true
     },
     {
         "title": "GOG - Union of Arrays with Duplicates",
@@ -657,12 +693,13 @@
         ],
         "notes": "look at other solutions",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-16",
+        "next_review": "2026-01-11",
+        "review_count": 5,
+        "success_count": 4,
+        "ef": 2.5800000000000005,
+        "interval": 87,
+        "skip_recall": true
     },
     {
         "title": "GOG - Missing in Array",
@@ -675,12 +712,13 @@
         ],
         "notes": "learn other solutions like xor",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-15",
+        "next_review": "2025-10-16",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG - Missing And Repeating",
@@ -697,7 +735,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG - Two Sum - Pair with Given Sum",
@@ -710,12 +749,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-14",
+        "next_review": "2025-11-17",
+        "review_count": 4,
+        "success_count": 3,
+        "ef": 2.4800000000000004,
+        "interval": 34,
+        "skip_recall": true
     },
     {
         "title": "GOG - Remove Duplicates Sorted Array",
@@ -732,7 +772,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "GOG - Frequencies in a Limited Array",
@@ -744,12 +785,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-14",
+        "next_review": "2025-10-15",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "GOG - Check Equal Arrays",
@@ -767,7 +809,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "GOG - Intersection of Arrays with Distinct",
@@ -780,12 +823,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-06",
+        "next_review": "2025-10-12",
+        "review_count": 2,
+        "success_count": 1,
+        "ef": 2.2800000000000002,
+        "interval": 6,
+        "skip_recall": false
     },
     {
         "title": "GOG- Count the triplets",
@@ -802,7 +846,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "GOG - Armstrong Numbers",
@@ -818,7 +863,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG - Count Digits",
@@ -829,12 +875,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-11",
+        "next_review": "2025-10-12",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG - Perfect Numbers",
@@ -850,7 +897,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG - Array Search",
@@ -862,12 +910,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-09",
+        "next_review": "2025-10-10",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG - Array Subset",
@@ -886,7 +935,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG - GCD of two numbers",
@@ -902,7 +952,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG- Reverse digits",
@@ -918,7 +969,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG - Min and Max in Array",
@@ -929,12 +981,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-09",
+        "next_review": "2025-10-10",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "GOG - Odd or Even",
@@ -951,7 +1004,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Richest Customer Wealth",
@@ -963,12 +1017,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-08",
+        "next_review": "2025-10-24",
+        "review_count": 3,
+        "success_count": 3,
+        "ef": 2.8000000000000003,
+        "interval": 16,
+        "skip_recall": true
     },
     {
         "title": "Insert Greatest Common Divisors in Linked List",
@@ -980,12 +1035,13 @@
         ],
         "notes": "",
         "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-08",
+        "next_review": "2025-10-09",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Minimum Number of Operations to Move All Balls to Each Box",
@@ -1003,7 +1059,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Partitioning Into Minimum Number Of Deci-Binary Numbers",
@@ -1020,7 +1077,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Zigzag Conversion",
@@ -1036,7 +1094,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Strictly Palindromic Number",
@@ -1053,7 +1112,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Find the Number of Distinct Colors Among the Balls",
@@ -1065,13 +1125,14 @@
             "simulation"
         ],
         "notes": "",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "difficulty": "Hard",
+        "last_reviewed": "2025-10-09",
+        "next_review": "2025-10-10",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Divide Two Integers",
@@ -1088,7 +1149,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Jump Game",
@@ -1106,7 +1168,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Remove All Occurrences of a Substring",
@@ -1124,7 +1187,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Binary Search Tree to Greater Sum Tree",
@@ -1143,7 +1207,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Max Sum of a Pair With Equal Sum of Digits",
@@ -1162,7 +1227,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Minimum Operations to Exceed Threshold Value II",
@@ -1180,7 +1246,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Construct the Lexicographically Largest Valid Sequence",
@@ -1197,7 +1264,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Construct Smallest Number From DI String",
@@ -1216,7 +1284,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "The k-th Lexicographical String of All Happy Strings of Length n",
@@ -1228,12 +1297,13 @@
         ],
         "notes": "learn this",
         "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-11",
+        "next_review": "2025-10-12",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Find Unique Binary String",
@@ -1247,12 +1317,13 @@
         ],
         "notes": "learn this",
         "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-08",
+        "next_review": "2025-10-09",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Number of Sub-arrays With Odd Sum",
@@ -1266,12 +1337,13 @@
         ],
         "notes": "learn this",
         "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-08",
+        "next_review": "2025-10-14",
+        "review_count": 2,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 1.8600000000000003,
+        "interval": 6,
+        "skip_recall": false
     },
     {
         "title": "Length of Longest Fibonacci Subsequence",
@@ -1289,7 +1361,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Check if Number is a Sum of Powers of Three",
@@ -1305,7 +1378,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Same Tree",
@@ -1324,7 +1398,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Maximum Score After Splitting a String",
@@ -1341,7 +1416,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Find Closest Node to Given Two Nodes",
@@ -1353,12 +1429,13 @@
         ],
         "notes": "learn this",
         "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-15",
+        "next_review": "2025-10-16",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Distribute Candies Among Children II",
@@ -1376,7 +1453,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Convert Integer to the Sum of Two No-Zero Integers",
@@ -1387,12 +1465,13 @@
         ],
         "notes": "learn this",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-09",
+        "next_review": "2025-10-10",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Count Hills and Valleys in an Array",
@@ -1408,7 +1487,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Left and Right Sum Differences",
@@ -1420,12 +1500,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-15",
+        "next_review": "2025-10-16",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Divisible and Non-divisible Sums Difference",
@@ -1436,12 +1517,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
+        "last_reviewed": "2025-10-08",
+        "next_review": "2025-10-09",
+        "review_count": 1,
         "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "ef": 2.18,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Find the Maximum Achievable Number",
@@ -1457,7 +1539,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Spiral Matrix",
@@ -1470,12 +1553,13 @@
         ],
         "notes": "",
         "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-09",
+        "next_review": "2025-10-10",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Valid Anagram",
@@ -1493,7 +1577,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Longest Consecutive Sequence",
@@ -1511,7 +1596,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Set Matrix Zeroes",
@@ -1529,7 +1615,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Number of Zero-Filled Subarrays",
@@ -1540,13 +1627,14 @@
             "math"
         ],
         "notes": "",
-        "difficulty": "Medium",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-12",
+        "next_review": "2025-10-18",
+        "review_count": 2,
+        "success_count": 2,
+        "ef": 2.7,
+        "interval": 6,
+        "skip_recall": false
     },
     {
         "title": "Find All Duplicates in an Array",
@@ -1563,7 +1651,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Increasing Triplet Subsequence",
@@ -1580,7 +1669,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Convert 1D Array Into 2D Array",
@@ -1593,12 +1683,13 @@
         ],
         "notes": "",
         "difficulty": "Easy",
-        "last_reviewed": null,
-        "next_review": null,
-        "review_count": 0,
-        "success_count": 0,
-        "ef": 2.5,
-        "interval": 1
+        "last_reviewed": "2025-10-14",
+        "next_review": "2025-10-15",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": true
     },
     {
         "title": "Power of Four",
@@ -1615,7 +1706,8 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Find the Prefix Common Array of Two Arrays",
@@ -1633,12 +1725,13 @@
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
     },
     {
         "title": "Longest Subarray with Sum K",
         "statement": "Given an array arr[] containing integers and an integer k, your task is to find the length of the longest subarray where the sum of its elements is equal to the given value k. If there is no subarray with sum equal to k, return 0.\n\nExamples:\n\nInput: arr[] = [10, 5, 2, 7, 1, -10], k = 15\nOutput: 6\nExplanation: Subarrays with sum = 15 are [5, 2, 7, 1], [10, 5] and [10, 5, 2, 7, 1, -10]. The length of the longest subarray with a sum of 15 is 6.\n\nInput: arr[] = [-5, 8, -14, 2, 4, 12], k = -5\nOutput: 5\nExplanation: Only subarray with sum = -5 is [-5, 8, -14, 2, 4] of length 5.\n\nInput: arr[] = [10, -10, 20, 30], k = 5\nOutput: 0\nExplanation: No subarray with sum = 5 is present in arr[].",
-        "solution": "import java.util.*;\n\npublic class Main {\n    public static int getLongestSubarray(int []a, long k) {\n        int n = a.length; // size of the array.\n\n        int left = 0, right = 0; // 2 pointers\n        long sum = a[0];\n        int maxLen = 0;\n        while (right < n) {\n            // if sum > k, reduce the subarray from left\n            // until sum becomes less or equal to k:\n            while (left <= right && sum > k) {\n                sum -= a[left];\n                left++;\n            }\n\n            // if sum = k, update the maxLen i.e. answer:\n            if (sum == k) {\n                maxLen = Math.max(maxLen, right - left + 1);\n            }\n\n            // Move forward thw right pointer:\n            right++;\n            if (right < n) sum += a[right];\n        }\n\n        return maxLen;\n    }\n\n",
+        "solution": "class Solution {\r\n    public int longestSubarray(int[] arr, int k) {\r\n        HashMap<Integer, Integer> prefix = new HashMap<>();\r\n        int sum = 0;\r\n        int max = 0;\r\n\r\n        for (int i = 0; i < arr.length; i++) {\r\n            sum += arr[i];\r\n\r\n            // Case 1: whole prefix has sum == k\r\n            if (sum == k) {\r\n                max = Math.max(max, i + 1);\r\n            }\r\n\r\n            // Case 2: check if (sum - k) was seen before\r\n            if (prefix.containsKey(sum - k)) {\r\n                int len = i - prefix.get(sum - k);\r\n                max = Math.max(max, len);\r\n            }\r\n\r\n            // Store prefix sum with earliest index\r\n            prefix.putIfAbsent(sum, i);\r\n        }\r\n        return max;\r\n    }\r\n}",
         "tags": [
             "array",
             "hashmap",
@@ -1647,11 +1740,89 @@
         ],
         "notes": "this solution is using prefix sum , sliding / two pointer does not work for negative numbers",
         "difficulty": "Medium",
+        "last_reviewed": "2025-10-06",
+        "next_review": "2025-10-12",
+        "review_count": 2,
+        "success_count": 2,
+        "ef": 2.7,
+        "interval": 6,
+        "skip_recall": false
+    },
+    {
+        "title": "Backspace String Compare",
+        "statement": "Given two strings s and t, return true if they are equal when both are typed into empty text editors. '#' means a backspace character.\n\nNote that after backspacing an empty text, the text will continue empty.\n\n \n\nExample 1:\n\nInput: s = \"ab#c\", t = \"ad#c\"\nOutput: true\nExplanation: Both s and t become \"ac\".\n\nExample 2:\n\nInput: s = \"ab##\", t = \"c#d#\"\nOutput: true\nExplanation: Both s and t become \"\".\n\nExample 3:\n\nInput: s = \"a#c\", t = \"b\"\nOutput: false\nExplanation: s becomes \"c\" while t becomes \"b\".\n",
+        "solution": "class Solution {\n        public boolean backspaceCompare(String S, String T) {\n        int i = S.length() - 1, j = T.length() - 1, back;\n        while (true) {\n            back = 0;\n            while (i >= 0 && (back > 0 || S.charAt(i) == '#')) {\n                back += S.charAt(i) == '#' ? 1 : -1;\n                i--;\n            }\n            back = 0;\n            while (j >= 0 && (back > 0 || T.charAt(j) == '#')) {\n                back += T.charAt(j) == '#' ? 1 : -1;\n                j--;\n            }\n            if (i >= 0 && j >= 0 && S.charAt(i) == T.charAt(j)) {\n                i--;\n                j--;\n            } else {\n                break;\n            }\n        }\n        return i == -1 && j == -1;\n    }\n}",
+        "tags": [
+            "two pointers",
+            "stack",
+            "string",
+            "simulation"
+        ],
+        "notes": "the solution of building the actual string:\nclass Solution {\n    public boolean backspaceCompare(String s, String t) {\n        StringBuilder sb = new StringBuilder();\n        StringBuilder tb = new StringBuilder();\n        for(char c:s.toCharArray()){\n            if(c=='#'){\n                if(sb.length()-1>=0){\n                    sb.deleteCharAt(sb.length()-1);\n                }\n            }else{\n                sb.append(c);\n            }\n        }\n        for(char c:t.toCharArray()){\n            if(c=='#'){\n                if(tb.length()-1>=0){\n                    tb.deleteCharAt(tb.length()-1);\n                }\n            }else{\n                tb.append(c);\n            }\n        }\n        String s1=sb.toString();\n        String s2=tb.toString();\n        return s1.equals(s2);\n    }\n}",
+        "difficulty": "Easy",
         "last_reviewed": null,
         "next_review": null,
         "review_count": 0,
         "success_count": 0,
         "ef": 2.5,
-        "interval": 1
+        "interval": 1,
+        "skip_recall": false
+    },
+    {
+        "title": "Is Subsequence",
+        "statement": "Given two strings s and t, return true if s is a subsequence of t, or false otherwise.\n\nA subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., \"ace\" is a subsequence of \"abcde\" while \"aec\" is not).\n\n \n\nExample 1:\n\nInput: s = \"abc\", t = \"ahbgdc\"\nOutput: true\n\nExample 2:\n\nInput: s = \"axc\", t = \"ahbgdc\"\nOutput: false\n",
+        "solution": "class Solution {\n    public boolean isSubsequence(String s, String t) {\n        int ptr1=0,ptr2=0;\n        while(ptr2<t.length() && ptr1<s.length()){\n            if(s.charAt(ptr1)==t.charAt(ptr2)){\n                ptr1++;\n                ptr2++;\n            }else{\n                ptr2++;\n            }\n        }\n        return ptr1==s.length();\n    }\n}",
+        "tags": [
+            "two pointers",
+            "dynamic programming",
+            "string"
+        ],
+        "notes": "Dynamic Programming / Recursive:\nclass Solution {\n    public boolean isSub(String a, String b, int m, int n) {\n        if (m == 0) {\n            return true;\n        }\n        if (n == 0 && m != 0) {\n            return false;\n        }\n        if (a.charAt(m - 1) == b.charAt(n - 1)) {\n            return isSub(a, b, m - 1, n - 1);\n        } else {\n            return isSub(a, b, m, n - 1);\n        }\n    }\n\n    public boolean isSubsequence(String s, String t) {\n        int m = s.length();\n        int n = t.length();\n        if (m > n) {\n            return false;\n        }\n        return isSub(s, t, m, n);\n    }\n}\n\nSimple Approach:\nclass Solution {\n    public boolean isSubsequence(String s, String t) {\nint i = 0;\nfor (char ch : s.toCharArray()) {\nint indexOf = t.indexOf(ch, i);\nif (indexOf == -1) {\nreturn false;\n} else {\ni = indexOf + 1;\n}\n}\nreturn true;\n}\n}",
+        "difficulty": "Easy",
+        "last_reviewed": "2025-10-11",
+        "next_review": "2025-10-12",
+        "review_count": 1,
+        "success_count": 1,
+        "ef": 2.6,
+        "interval": 1,
+        "skip_recall": false
+    },
+    {
+        "title": "3Sum Closest",
+        "statement": "Given an integer array nums of length n and an integer target, find three integers in nums such that the sum is closest to target.\n\nReturn the sum of the three integers.\n\nYou may assume that each input would have exactly one solution.\n\n \n\nExample 1:\n\nInput: nums = [-1,2,1,-4], target = 1\nOutput: 2\nExplanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).\n\nExample 2:\n\nInput: nums = [0,0,0], target = 1\nOutput: 0\nExplanation: The sum that is closest to the target is 0. (0 + 0 + 0 = 0).",
+        "solution": "class Solution {\n    public int threeSumClosest(int[] nums, int target) {\n        int fir = 0, sec = 0, thi = 0, sum, diff = Integer.MAX_VALUE , min = 0;\n        Arrays.sort(nums);\n        for (fir = 0; fir < nums.length - 2; fir++) {\n            sec = fir + 1;\n            thi = nums.length - 1;\n            while (sec < thi) {\n                sum = nums[fir] + nums[sec] + nums[thi];\n                int curr = Math.abs(sum - target);\n                if (curr<diff){\n                    diff = curr;\n                    min = sum;\n                }\n                if (sum > target) {\n                    thi--;\n                } else {\n                    sec++;\n                }\n            }\n        }\n        return min;\n    }\n}",
+        "tags": [
+            "array",
+            "two pointers",
+            "sorting"
+        ],
+        "notes": "the key is to store both the diff and value separately",
+        "difficulty": "Medium",
+        "last_reviewed": null,
+        "next_review": null,
+        "review_count": 0,
+        "success_count": 0,
+        "ef": 2.5,
+        "interval": 1,
+        "skip_recall": false
+    },
+    {
+        "title": "Sort Colors",
+        "statement": "Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.\n\nWe will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.\n\nYou must solve this problem without using the library's sort function.\n\n \n\nExample 1:\n\nInput: nums = [2,0,2,1,1,0]\nOutput: [0,0,1,1,2,2]\n\nExample 2:\n\nInput: nums = [2,0,1]\nOutput: [0,1,2]",
+        "solution": "class Solution {\n    public void sortColors(int[] nums) {\n        int left=0,mid=0,right=nums.length-1;\n        while(mid<=right){\n            if(nums[mid]==0){\n                nums[mid++]=nums[left];\n                nums[left++]=0;\n            }else if(nums[mid]==1){\n                mid++;\n            }else{\n                nums[mid]=nums[right];\n                nums[right--]=2;\n            }\n        }\n    }\n}",
+        "tags": [
+            "array",
+            "two pointing",
+            "sorting"
+        ],
+        "notes": "learn dutch flag algorithm",
+        "difficulty": "Medium",
+        "last_reviewed": null,
+        "next_review": null,
+        "review_count": 0,
+        "success_count": 0,
+        "ef": 2.5,
+        "interval": 1,
+        "skip_recall": false
     }
 ]

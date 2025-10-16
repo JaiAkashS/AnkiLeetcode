@@ -3,7 +3,8 @@ import datetime
 
 class Problem:
     def __init__(self, title, statement, solution, tags=None, notes=None, difficulty=None,
-                 last_reviewed=None, next_review=None, review_count=0, success_count=0, ef=2.5, interval=1):
+                 last_reviewed=None, next_review=None, review_count=0, success_count=0, ef=2.5, interval=1,
+                 skip_recall=False):
         self.title = title
         self.statement = statement
         self.solution = solution
@@ -16,6 +17,7 @@ class Problem:
         self.success_count = success_count
         self.ef = ef  # Easiness factor for SM-2
         self.interval = interval  # Days until next review
+        self.skip_recall = skip_recall
 
     def mark_reviewed(self, success, difficulty):
         self.last_reviewed = datetime.date.today().isoformat()
@@ -53,6 +55,7 @@ class Problem:
             "success_count": self.success_count,
             "ef": self.ef,
             "interval": self.interval
+            , "skip_recall": self.skip_recall
         }
 
     @staticmethod
@@ -69,7 +72,8 @@ class Problem:
             review_count=d.get("review_count", 0),
             success_count=d.get("success_count", 0),
             ef=d.get("ef", 2.5),
-            interval=d.get("interval", 1)
+            interval=d.get("interval", 1),
+            skip_recall=d.get("skip_recall", False)
         )
 
 class Solution:
